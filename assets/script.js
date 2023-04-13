@@ -24,10 +24,15 @@ slides.forEach(element => console.log(element));
 var dot = [];
 
 slides.forEach(function(slide){
+
+
   dot.push(slide);
 });
 
-
+const dotElement = document.createElement("div");
+dotElement.classList.add('dot');
+const sectionDots = document.querySelector(".dots");
+sectionDots.appendChild(dotElement);
 
 
 /**** arrow clikc event listener */
