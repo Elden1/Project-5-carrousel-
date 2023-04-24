@@ -1,49 +1,92 @@
 const slides = [
 	{
-		"image":"slide1.jpg",
+		"id":"1", "image":"slide1.jpg",
 		"tagLine":"Impressions tous formats <span>en boutique et en ligne</span>"
 	},
 	{
-		"image":"slide2.jpg",
+		"id":"2", "image":"slide2.jpg",
 		"tagLine":"Tirages haute définition grand format <span>pour vos bureaux et events</span>"
 	},
 	{
-		"image":"slide3.jpg",
+		"id":"3", "image":"slide3.jpg",
 		"tagLine":"Grand choix de couleurs <span>de CMJN aux pantones</span>"
 	},
 	{
-		"image":"slide4.png",
+		"id":"4", "image":"slide4.png",
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+// variables pour le slide et bannière
 
-slides.forEach(element => console.log(element));
+var i = 0;
+console.log(i);
+const banner = document.querySelector('#banner');
 
-/*** generate dots *****/
-
-var dot = [];
-
-slides.forEach(function(slide){
+// Générer l'image et le text de la bannière
 
 
-  dot.push(slide);
+/*** generate dots for each slide *****/
+
+
+//***all the dots in the world ****/
+var dot;
+
+
+slides.forEach(function(){
+	var dotElement = document.createElement("div");
+	dotElement.classList.add('dot');
+	const sectionDots = document.querySelector(".dots");
+	sectionDots.append(dotElement);
+	var selectedDotElement
+
+
+	const dotSlide = document.querySelector('dot');
 });
 
-const dotElement = document.createElement("div");
-dotElement.classList.add('dot');
-const sectionDots = document.querySelector(".dots");
-sectionDots.appendChild(dotElement);
+function generateContent (){
+	var slideId = document.querySelector("#banner > img").innerHTML = slides[i].id;
+	var imageElement = document.querySelector("#banner > img").src = `.\\assets\\images\\slideshow\\${slides[i].image}`;
+	var tagLine = document.querySelector("#banner > p").innerHTML = slides[i].tagLine;
+};
 
+generateContent();
+/*** connect dot with individual slide *****/  
 
 /**** arrow clikc event listener */
-document.getElementById("arrow_left").addEventListener("click", displayDate);
 
-function displayDate() {
-	document.getElementById("arrow_left").innerHTML = console.log("aaaaa");
-}
+	// Sélectionner et afficher l'image suivante de la bannière
+			document.getElementById("arrow_right").addEventListener("click", nextSlide);
+			function nextSlide () {
+					++i;
+					var slideId = document.querySelector("#banner > img").innerHTML = slides[i].id;
+					var imageElement = document.querySelector("#banner > img").src = `.\\assets\\images\\slideshow\\${slides[i].image}`;
+					var tagLine = document.querySelector("#banner > p").innerHTML = slides[i].tagLine;
+				if (i === 3) {
+					i = -1;
+				}
+				
+			console.log(i);
+		};
 
-document.getElementById("arrow_right").addEventListener("click", displayDate1);
+	// Sélectionner et afficher l'image precedente de la bannière
+		document.getElementById("arrow_left").addEventListener("click", previousSlide);
 
-function displayDate1() {
-	document.getElementById("arrow_right").innerHTML = console.log("eeee");
-  }
+		function previousSlide () {
+			--i;
+			if (i === -1) {
+				i = 3;
+			}
+			var slideId = document.querySelector("#banner > img").innerHTML = slides[i].id;
+			var imageElement = document.querySelector("#banner > img").src = `.\\assets\\images\\slideshow\\${slides[i].image}`;
+			var tagLine = document.querySelector("#banner > p").innerHTML = slides[i].tagLine;
+
+		console.log(i);
+	};
+
+		
+
+	
+	// changer l'image de la bannière
+
+
+  /*** function to replace href et text on click with 0 + 1 of the image/tagline */
