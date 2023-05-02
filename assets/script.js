@@ -50,17 +50,17 @@ function nextSlide () {
 document.getElementById("arrow_left").addEventListener("click", previousSlide);
 
 function previousSlide () {
-		--i;
-		--b;
-		if (i === -1) {
-			i = 3;
-		}
-		if (b === -1) {
-			b = 3;
-		}
-		slideId = document.querySelector("#banner > img").innerHTML = slides[i].id;
-		imageElement = document.querySelector("#banner > img").src = `.\\assets\\images\\slideshow\\${slides[i].image}`;
-		tagLine = document.querySelector("#banner > p").innerHTML = slides[i].tagLine;
+	--i;
+	--b;
+	if (i === -1) {
+		i = 3;
+	}
+	if (b === -1) {
+		b = 3;
+	}
+	slideId = document.querySelector("#banner > img").innerHTML = slides[i].id;
+	imageElement = document.querySelector("#banner > img").src = `.\\assets\\images\\slideshow\\${slides[i].image}`;
+	tagLine = document.querySelector("#banner > p").innerHTML = slides[i].tagLine;
 };
 
 // creation des dotes et fonctions pour chaque image
