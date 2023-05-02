@@ -18,7 +18,6 @@ const slides = [
 ]
 
 // variables pour le slide et bannière
-
 let i = 0;
 let a = 0;
 let b = 0;
@@ -26,70 +25,70 @@ const banner = document.querySelector('#banner');
 
 // Générer l'image et le text de la bannière
 
-	let slideId = document.querySelector("#banner > img").innerHTML = slides[i].id;
-	let imageElement = document.querySelector("#banner > img").src = `.\\assets\\images\\slideshow\\${slides[i].image}`;
-	let tagLine = document.querySelector("#banner > p").innerHTML = slides[i].tagLine;
+let slideId = document.querySelector("#banner > img").innerHTML = slides[i].id;
+let imageElement = document.querySelector("#banner > img").src = `.\\assets\\images\\slideshow\\${slides[i].image}`;
+let tagLine = document.querySelector("#banner > p").innerHTML = slides[i].tagLine;
 
-/*** generate dots for each slide *****/
+// Sélectionner et afficher l'image suivante de la bannière
+document.getElementById("arrow_right").addEventListener("click", nextSlide);
 
-	// Sélectionner et afficher l'image suivante de la bannière
-			document.getElementById("arrow_right").addEventListener("click", nextSlide);
-
-			function nextSlide () {
-					++i;
-					++b;
-					if (i === 4) {
-						i = 0;
-					}
-					if (b === 4) {
-						b = 0;
-					}
-					slideId = document.querySelector("#banner > img").innerHTML = slides[i].id;
-					imageElement = document.querySelector("#banner > img").src = `.\\assets\\images\\slideshow\\${slides[i].image}`;
-					tagLine = document.querySelector("#banner > p").innerHTML = slides[i].tagLine;
-		};
+function nextSlide () {
+	++i;
+	++b;
+	if (i === 4) {
+		i = 0;
+	}
+	if (b === 4) {
+		b = 0;
+	}
+	slideId = document.querySelector("#banner > img").innerHTML = slides[i].id;
+	imageElement = document.querySelector("#banner > img").src = `.\\assets\\images\\slideshow\\${slides[i].image}`;
+	tagLine = document.querySelector("#banner > p").innerHTML = slides[i].tagLine;
+};
 		
-	// Sélectionner et afficher l'image precedente de la bannière
-			document.getElementById("arrow_left").addEventListener("click", previousSlide);
+// Sélectionner et afficher l'image precedente de la bannière
+document.getElementById("arrow_left").addEventListener("click", previousSlide);
 
-			function previousSlide () {
-					--i;
-					--b;
-					if (i === -1) {
-						i = 3;
-					}
-					if (b === -1) {
-						b = 3;
-					}
-					slideId = document.querySelector("#banner > img").innerHTML = slides[i].id;
-					imageElement = document.querySelector("#banner > img").src = `.\\assets\\images\\slideshow\\${slides[i].image}`;
-					tagLine = document.querySelector("#banner > p").innerHTML = slides[i].tagLine;
-		};
+function previousSlide () {
+		--i;
+		--b;
+		if (i === -1) {
+			i = 3;
+		}
+		if (b === -1) {
+			b = 3;
+		}
+		slideId = document.querySelector("#banner > img").innerHTML = slides[i].id;
+		imageElement = document.querySelector("#banner > img").src = `.\\assets\\images\\slideshow\\${slides[i].image}`;
+		tagLine = document.querySelector("#banner > p").innerHTML = slides[i].tagLine;
+};
 
-		// creation des dotes pour chaque image
-				slides.forEach(function(){
-					let dotElement = document.createElement("div");
-					dotElement.classList.add('dot');
-					const sectionDots = document.querySelector(".dots");
-					sectionDots.append(dotElement);
+// creation des dotes et fonctions pour chaque image
+slides.forEach(function(){
+	let dotElement = document.createElement("div");
+	dotElement.classList.add('dot');
+	const sectionDots = document.querySelector(".dots");
+	sectionDots.append(dotElement);
 
-					dotElement.id = [a++];
+// donner un id a chaque dot pour identification	
+	dotElement.id = [a++];
 
+// ajouter une classe pour la première bulle de manière dynamique 
+	if (dotElement.id == [b]){
+		dotElement.classList.add('dot_selected');
+	} else {
+		dotElement.classList.remove('dot_selected');
+	}
 
-						if (dotElement.id == [b]){
-							dotElement.classList.add('dot_selected');
-						} else {
-							dotElement.classList.remove('dot_selected');
-						}
-					
-					document.getElementById("arrow_right").addEventListener("click", nextDot);
-					document.getElementById("arrow_left").addEventListener("click", nextDot);
+// ajouter une classe si l'image associée est sélectionnée
+	document.getElementById("arrow_right").addEventListener("click", nextDot);
+	document.getElementById("arrow_left").addEventListener("click", nextDot);
 
-					function nextDot(){
-						if (dotElement.id == [b]){
-							dotElement.classList.add('dot_selected');
-						} else {
-							dotElement.classList.remove('dot_selected');
-						}
-					}
-				});
+	function nextDot(){
+		if (dotElement.id == [b]){
+			dotElement.classList.add('dot_selected');
+		} else {
+			dotElement.classList.remove('dot_selected');
+		}
+	}
+});
